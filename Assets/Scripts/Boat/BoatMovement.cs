@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class BoatMovement : MonoBehaviour
 {
-    [SerializeField]
-    private BoatEngineData boatEngineDataObject;
+
 }

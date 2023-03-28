@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c07b5dc3cb26b7488d64069933eb0c2, type: 3}
+  m_Name: BrokenNet
+  m_EditorClassIdentifier: 
+  texture: {fileID: 0}
+  type: 4
+  description: Full of holes but atleast it will catch large fish sometimes...
+  netCatchRate: 0
+  maxFishCatched: 0
