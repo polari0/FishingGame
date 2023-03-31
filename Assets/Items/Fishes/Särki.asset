@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67da162f718aba345ba14df18dc0af3d, type: 3}
   m_Name: "S\xE4rki"
   m_EditorClassIdentifier: 
-  texture: {fileID: 0}
+  prefab: {fileID: 5323375740946471025, guid: 03c399ec62a216e4ab70e44a6a10ddae, type: 3}
   type: 3
   description: "S\xE4rki the \"Trash Fish\" of our eco stystem "
   catchChange: 0

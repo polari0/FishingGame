@@ -13,7 +13,7 @@ public enum InGameItemType
 }
 public abstract class ItemObject : ScriptableObject
 {
-    public GameObject texture;
+    public GameObject prefab;
 
     public InGameItemType type;
 

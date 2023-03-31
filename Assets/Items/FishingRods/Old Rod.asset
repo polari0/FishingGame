@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96650191061e85f41b3544dd0eb950e0, type: 3}
   m_Name: Old Rod
   m_EditorClassIdentifier: 
-  texture: {fileID: 0}
+  prefab: {fileID: 1152936698761172321, guid: 09e7c9c50e3e3404cacde174b24cd5e2, type: 3}
   type: 2
   description: 'Got this one from my grandpa when I was little it still does the
     job. '
