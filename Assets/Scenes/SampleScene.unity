@@ -247,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333860537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.37}
+  m_LocalPosition: {x: 2.43, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -435,34 +435,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393278062}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &570225772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 14281970313766909, guid: 098b60eb033245b41935000bb7802794, type: 3}
-  m_PrefabInstance: {fileID: 6515306470522192591}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &570225773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570225772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5fb105af487714439ba84298a768a2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInputs:
-    m_Name: Player Inputs
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2c5b3abe-c6ef-4030-b41d-558027611deb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  inventory: {fileID: 11400000, guid: affb52e857dd08b4c85cacd100babd3b, type: 2}
-  inventoryObjecttest: {fileID: 0}
 --- !u!1 &1100840294
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,7 +491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100840294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.91}
+  m_LocalPosition: {x: -1.77, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -958,7 +930,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088194264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1008,7 +980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9041660372688141230, guid: 098b60eb033245b41935000bb7802794, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9041660372688141230, guid: 098b60eb033245b41935000bb7802794, type: 3}
       propertyPath: m_LocalRotation.w

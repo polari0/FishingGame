@@ -5,21 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerBoat : MonoBehaviour
 {
-    public InputAction playerInputs;
     public InventoryObject inventory;
-
-    [SerializeField]
-    InventoryObject inventoryObjecttest;
-
-    //private void OnEnable()
-    //{
-    //    PlayerInput.Enable();
-    //}
-
-    private void OnDisable()
-    {
-        
-    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -32,12 +18,13 @@ public class PlayerBoat : MonoBehaviour
         }
     }
 
-    public void OnInventorySave()
+    public void OnSave()
     {
+        //This line is for testing purposes 
+        Debug.Log("Inventory Saved" + inventory.savePath);
         inventory.Save();
-        Debug.Log("inventorySaved" + inventoryObjecttest.savePath);
     }
-    public void OnInventoryLoad()
+    public void OnLoad(InputAction button)
     {
         inventory.Load(); 
 

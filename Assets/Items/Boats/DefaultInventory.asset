@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultInventory
   m_EditorClassIdentifier: 
   savePath: 
-  database: {fileID: 0}
+  database: {fileID: 11400000, guid: 653d224781a9d70458adbcd91f5f448a, type: 2}
   Container: []

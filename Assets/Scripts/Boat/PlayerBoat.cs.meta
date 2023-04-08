@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - inventory: {fileID: 11400000, guid: affb52e857dd08b4c85cacd100babd3b, type: 2}
+  - inventoryObjecttest: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
