@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InventoryLoad",
+                    "name": "Load",
                     "type": "Button",
                     "id": "78851130-21fa-4e4c-a67c-a29bf1b18cea",
                     "expectedControlType": "Button",
@@ -28,7 +28,7 @@
                 {
                     "name": "",
                     "id": "09db5e26-80cf-4c9a-9841-53674156e522",
-                    "path": "<Keyboard>/f5",
+                    "path": "<Keyboard>/#(S)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -39,11 +39,11 @@
                 {
                     "name": "",
                     "id": "eff181c5-13f4-46fd-af94-1eb00f47fcd2",
-                    "path": "<Keyboard>/f4",
+                    "path": "<Keyboard>/#(L)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryLoad",
+                    "action": "Load",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
