@@ -35,10 +35,10 @@ public class PlayerBoat : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision");
-        var item = other.GetComponent<Item>();
+        var item = other.GetComponent<GroundItem>();
         if (item)
         {
-            inventory.AddItem(item.item, 1);
+            inventory.AddItem(new Item(item.item), 1);
             Destroy(other.gameObject);
         }
     }
@@ -55,23 +55,10 @@ public class PlayerBoat : MonoBehaviour
             inventory.Load();
         }
     }
-
-    //public void Save(InputAction.CallbackContext context)
-    //{
-    //    //This line is for testing purposes 
-    //    Debug.Log("Inventory Saved" + inventory.savePath);
-    //    inventory.Save();
-    //}
-    //public void Load(InputAction.CallbackContext context)
-    //{
-    //    inventory.Load(); 
-    //}
-
-
     //This piece of code simply clears the inventory when you restart the game not really good for testing purposes if you ask from me :)
     private void OnApplicationQuit()
     {
-        inventory.Container.Clear();
+        inventory.Container.items.Clear();
     }
 }
 

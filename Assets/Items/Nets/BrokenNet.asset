@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c07b5dc3cb26b7488d64069933eb0c2, type: 3}
   m_Name: BrokenNet
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2818859963482110115, guid: 58f34ea38e5c0ca468a3c0efa3c016d9, type: 3}
+  Id: 1
+  UISprite: {fileID: -2104692227, guid: 6b40f16ac2cf0d349adad391c746cf24, type: 3}
   type: 4
   description: Full of holes but atleast it will catch large fish sometimes...
   netCatchRate: 0

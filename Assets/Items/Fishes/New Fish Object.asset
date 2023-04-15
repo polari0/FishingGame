@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67da162f718aba345ba14df18dc0af3d, type: 3}
   m_Name: New Fish Object
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2818859963482110115, guid: 58f34ea38e5c0ca468a3c0efa3c016d9, type: 3}
+  Id: 0
+  UISprite: {fileID: -1127569265, guid: 4cc5006d51e1ab24389f2e4eb532df58, type: 3}
   type: 3
   description: rfjhighrigjheifg
   catchChange: 5.82

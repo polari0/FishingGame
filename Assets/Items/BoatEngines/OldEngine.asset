@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f0c9b5850852f4ea2bb759192f77c9, type: 3}
   m_Name: OldEngine
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3717294766979042633, guid: 15a832a2be735b24fb2635b95432be0e, type: 3}
+  Id: 3
+  UISprite: {fileID: 1672116236, guid: 6b40f16ac2cf0d349adad391c746cf24, type: 3}
   type: 1
   description: 'This old Engine earned nickname "Prukuttaja" because of the sound
     it makes. It is not wery powerfull but still works. '
