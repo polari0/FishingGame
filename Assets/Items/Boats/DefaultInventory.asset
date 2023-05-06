@@ -15,4 +15,76 @@ MonoBehaviour:
   savePath: /Invetory.Save
   database: {fileID: 11400000, guid: 653d224781a9d70458adbcd91f5f448a, type: 2}
   Container:
-    items: []
+    items:
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0
+    - ID: -1
+      item:
+        name: 
+        Id: 0
+        itemValues: []
+      amount: 0

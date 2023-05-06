@@ -6,28 +6,23 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-
-//this script does stuff but has been cut down to few smaller scripts to make everything more clear. 
-public class InventoryUpdate : MonoBehaviour
+public abstract class UserUI : MonoBehaviour
 {
-    public MouseItem mouseItem = new MouseItem();
 
-    public GameObject inventoryPrefab;
+    public PlayerBoat player;
+
     public InventoryObject inventory;
-
-    [SerializeField]
-    private int startX, StartY;
-
-    [SerializeField, Range(1, 100)]
-    private int spaceBetweenItemX, spaceBetweenItemY;
-
-    public int numberOfColums;
-
-    Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot >();
+    public Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < inventory.Container.items.Length; i++)
+        {
+            inventory.Container.items[i].parent = this;
+        }
         CreateSlots();
+        AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterFace(gameObject); });
+        AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterFace(gameObject); });
     }
 
     // Update is called once per frame
@@ -39,9 +34,9 @@ public class InventoryUpdate : MonoBehaviour
     //so this function updates the items slots and for now it will be run every frame but it should be run only when the inventory changes. 
     public void UpdateSlots()
     {
-        foreach(KeyValuePair<GameObject, InventorySlot> _slot in itemsDisplayed)
+        foreach (KeyValuePair<GameObject, InventorySlot> _slot in itemsDisplayed)
         {
-            if(_slot.Value.ID >= 0)
+            if (_slot.Value.ID >= 0)
             {
                 //This here takes the sprite from data base and changes the iventoryslot sprite to that one. 
                 _slot.Key.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.database.GetItem[_slot.Value.item.Id].UISprite;
@@ -59,29 +54,12 @@ public class InventoryUpdate : MonoBehaviour
         }
     }
     //This function creates the inventory slots when the game starts. 
-    private void CreateSlots()
-    {
-        itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
-        for (int i = 0; i < inventory.Container.items.Length; i++)
-        {
-            var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
-            obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-
-            AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
-            AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
-            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
-            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
-            AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
-
-
-            itemsDisplayed.Add(obj, inventory.Container.items[i]);
-        }
-    }
+    public abstract void CreateSlots();
 
     #region "Event stuff"
     //this entire region for the events to handle moving items with in the inventory.
     //This function is here to simplify using unity events in the future. 
-    private void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
+    protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
         var eventTrigger = new EventTrigger.Entry();
@@ -90,20 +68,28 @@ public class InventoryUpdate : MonoBehaviour
         trigger.triggers.Add(eventTrigger);
     }
 
-    private void OnEnter(GameObject obj)
+    public void OnEnter(GameObject obj)
     {
-        mouseItem.hoverObj = obj;
+        player.mouseItem.hoverObj = obj;
         if (itemsDisplayed.ContainsKey(obj))
         {
-            mouseItem.hoverItem = itemsDisplayed[obj];
+            player.mouseItem.hoverItem = itemsDisplayed[obj];
         }
     }
-    private void OnExit(GameObject obj)
+    public void OnExit(GameObject obj)
     {
-        mouseItem.hoverObj = null;
-        mouseItem.hoverItem = null;
+        player.mouseItem.hoverObj = null;
+        player.mouseItem.hoverItem = null;
     }
-    private void OnDragStart(GameObject obj)
+    public void OnEnterInterFace(GameObject obj)
+    {
+        player.mouseItem.ui = obj.GetComponent<UserUI>();
+    }
+    public void OnExitInterFace(GameObject obj)
+    {
+        player.mouseItem.ui = null;
+    }
+    public void OnDragStart(GameObject obj)
     {
         var mouseObject = new GameObject();
         var rt = mouseObject.AddComponent<RectTransform>();
@@ -115,38 +101,47 @@ public class InventoryUpdate : MonoBehaviour
             img.sprite = inventory.database.GetItem[itemsDisplayed[obj].ID].UISprite;
             img.raycastTarget = false;
         }
-        mouseItem.obj = mouseObject;
-        mouseItem.hoverItem = itemsDisplayed[obj];
+        player.mouseItem.obj = mouseObject;
+        player.mouseItem.hoverItem = itemsDisplayed[obj];
     }
-    private void OnDragEnd(GameObject obj)
+    public void OnDragEnd(GameObject obj)
     {
-        if (mouseItem.hoverObj)
+        var itemOnMouse = player.mouseItem;
+        var mouseHoverItem = itemOnMouse.hoverItem;
+        var mouseHoverObj = itemOnMouse.hoverObj;
+        var getItemObjet = inventory.database.GetItem;
+
+        if (itemOnMouse.ui != null)
         {
-            inventory.MoveItem(itemsDisplayed[obj], itemsDisplayed[mouseItem.hoverObj]);
+            if (mouseHoverObj)
+                if (mouseHoverItem.CanPlaceInSlot(getItemObjet[itemsDisplayed[obj].ID]) && (mouseHoverItem.item.Id <= -1 || (mouseHoverItem.item.Id >= 0 && itemsDisplayed[obj].CanPlaceInSlot(getItemObjet[mouseHoverItem.item.Id]))))
+                    inventory.MoveItem(itemsDisplayed[obj], mouseHoverItem.parent.itemsDisplayed[itemOnMouse.hoverObj]); 
         }
         else
         {
             Debug.Log("Mission target Remove Item... Iniate");
             inventory.RemoveItem(itemsDisplayed[obj].item);
         }
-        Destroy(mouseItem.obj);
-        mouseItem.item = null;
+        Destroy(player.mouseItem.obj);
+        player.mouseItem.item = null;
     }
-    private void OnDrag(GameObject obj)
+    public void OnDrag(GameObject obj)
     {
-        if(mouseItem.obj != null)
+        if (player.mouseItem.obj != null)
         {
-            mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+            player.mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
         }
     }
 
     #endregion
 
+}
 
-    //sets positions for the items with in the inventory 
-    public Vector3 GetPosition(int i)
-    {
-        return new Vector3(startX + (spaceBetweenItemX * (i % numberOfColums)), StartY + ((-spaceBetweenItemY * (i / numberOfColums))), 0f);
-    }
-
+public class MouseItem
+{
+    public UserUI ui;
+    public GameObject obj;
+    public InventorySlot item;
+    public InventorySlot hoverItem;
+    public GameObject hoverObj;
 }

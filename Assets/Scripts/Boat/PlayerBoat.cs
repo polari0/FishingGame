@@ -5,32 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerBoat : MonoBehaviour
 {
+    public MouseItem mouseItem = new MouseItem();
     public InventoryObject inventory;
-    //PlayerInputsSave playerInput;
+    public InputAction playerControls;
+    [SerializeField]
+    private Rigidbody rb;
 
-    //private InputAction save;
-    //private InputAction load;
+    private Vector2 moveDicrection;
+    private float movespeed = 10;
 
+    private void OnEnable() => playerControls.Enable();
 
-
-    private void Awake()
-    {
-        //playerInput = new PlayerInputsSave();
-    }
-
-    private void OnEnable()
-    {
-        //save = playerInput.PlayerInputs.Save;
-        //load = playerInput.PlayerInputs.Load;
-    }
-
-
-    private void OnDisable()
-    {
-        //save.Disable();
-        //load.Disable();
-    }
-
+    private void OnDisable() => playerControls.Disable();
 
     public void OnTriggerEnter(Collider other)
     {
@@ -45,20 +31,28 @@ public class PlayerBoat : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        moveDicrection = playerControls.ReadValue<Vector2>();
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("Inventory Saved" + inventory.savePath);
             inventory.Save();
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
+            Debug.Log("inventory Loaded");
             inventory.Load();
         }
     }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector3(moveDicrection.x * movespeed, 0, moveDicrection.y * movespeed);
+    }
+
     //This piece of code simply clears the inventory when you restart the game not really good for testing purposes if you ask from me :)
     private void OnApplicationQuit()
     {
-        inventory.Container.items.Clear();
+        inventory.Container.items = new InventorySlot[12]; 
     }
 }
 
